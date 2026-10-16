@@ -7,6 +7,7 @@ import { useScrollProgress } from '@/hooks/useScrollProgress';
 import { useSlideNavigation } from '@/hooks/useSlideNavigation';
 import { useSoundEffect } from '@/hooks/useSoundEffect';
 import { MobileDrawer } from '@/components/layout/MobileDrawer';
+import { NavigationHint } from '@/components/layout/NavigationHint';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { About } from '@/components/sections/About';
 import { Contact } from '@/components/sections/Contact';
@@ -56,6 +57,7 @@ export default function App() {
         <Contact />
       </main>
 
+      <NavigationHint fullscreenSupported={fullscreen.supported} />
       <Sidebar {...navProps} />
       <MobileDrawer {...navProps} />
     </MotionConfig>

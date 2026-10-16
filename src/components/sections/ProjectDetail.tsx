@@ -160,7 +160,7 @@ export function ProjectDetail({ project }: { project: Project }) {
         <Reveal>
           <RevealItem>
             {/* IMAGE: final — `project-XX-final.*` (hero-quality product shot) */}
-            <ImageSlot image={images.final} aspect="" frameClassName="h-[34svh] md:h-[42svh]">
+            <ImageSlot image={images.final} aspect="" frameClassName="h-[46svh] md:h-[60svh]">
               <AnnotationOverlay items={images.final.annotations}>
                 {/* OVERLAY SLOT (final) */}
               </AnnotationOverlay>
@@ -168,16 +168,27 @@ export function ProjectDetail({ project }: { project: Project }) {
           </RevealItem>
         </Reveal>
 
-        <Reveal className="grid gap-10 px-gutter pt-10 lg:grid-cols-2 lg:gap-20">
-          <Copy label="final product" block={sections.final} headingId={`${ids.final}-title`} />
+        {/* Short caption row: title + one line on the left, key specs in a single row on the right. */}
+        <Reveal className="grid gap-6 px-gutter pt-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:items-end lg:gap-16">
+          <RevealItem>
+            <SectionLabel>final product</SectionLabel>
+            <h3
+              id={`${ids.final}-title`}
+              className="text-xl font-semibold leading-tight tracking-[-0.02em] text-ink md:text-2xl"
+            >
+              {sections.final.title}
+            </h3>
+            <p className="mt-2 max-w-md text-[14px] leading-relaxed text-espresso">
+              <Highlight text={sections.final.body} terms={sections.final.highlights} />
+            </p>
+          </RevealItem>
 
-          <RevealItem className="lg:pt-6">
-            <h4 className="eyebrow">Specifications</h4>
-            <dl className="mt-5 grid gap-x-10 gap-y-5 sm:grid-cols-2">
+          <RevealItem>
+            <dl className="grid grid-cols-2 gap-x-8 gap-y-4 lg:auto-cols-fr lg:grid-flow-col lg:grid-cols-none">
               {specs.map((spec) => (
                 <div key={spec.label}>
                   <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-taupe">{spec.label}</dt>
-                  <dd className="mt-2 text-[15px] font-medium leading-snug text-ink">{spec.value}</dd>
+                  <dd className="mt-1.5 text-[14px] font-medium leading-snug text-ink">{spec.value}</dd>
                 </div>
               ))}
             </dl>
