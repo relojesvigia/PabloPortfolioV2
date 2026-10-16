@@ -1,0 +1,46 @@
+/* ─────────────────────────────────────────────────────────────
+   Design tokens — the single source for colour, type and spacing.
+   Tailwind reads these through tailwind.config.ts.
+   Colours are RGB channels so they work with opacity:
+     rgb(var(--color-espresso))  or  rgb(var(--color-espresso) / 0.4)
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* Colour */
+  --color-canvas: 250 250 248; /* #FAFAF8  background */
+  --color-ink: 34 27 22; /* #221B16  primary text, headings */
+  --color-espresso: 62 52 43; /* #3E342B  body text, progress bar */
+  --color-taupe: 140 130 118; /* #8C8276  accent, meta text */
+  --color-beige: 234 228 218; /* #EAE4DA  beige elements */
+  --color-sand: 229 222 211; /* #E5DED3  tracks, hairlines */
+  --color-whatsapp: 37 211 102; /* #25D366 */
+
+  /* Type */
+  --font-sans: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-hand: 'Bryndan Write', 'Caveat', cursive;
+
+  /* Spacing */
+  --space-gutter: clamp(1.5rem, 5vw, 5rem); /* horizontal page padding */
+  --space-section: clamp(6rem, 14vh, 10rem); /* vertical rhythm between sections */
+
+  /* Layout: content ≈ 85%, fixed sidebar ≈ 15% (never narrower than 13rem) */
+  --layout-sidebar: max(15%, 13rem);
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Bryndan Write is a commercial font and is not on Google Fonts.
+   Put BryndanWrite.woff2 (and optionally .woff) in /public/fonts/.
+   Until then, labels fall back to Caveat, loaded in index.html. */
+@font-face {
+  font-family: 'Bryndan Write';
+  src:
+    local('Bryndan Write'),
+    local('BryndanWrite'),
+    url('/fonts/BryndanWrite.woff2') format('woff2'),
+    url('/fonts/BryndanWrite.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

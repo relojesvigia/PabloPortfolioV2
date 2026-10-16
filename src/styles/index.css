@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-espresso antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-beige text-ink;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-espresso));
+    outline-offset: 3px;
+  }
+
+  img {
+    -webkit-user-drag: none;
+  }
+
+  /* Quiet scrollbar in the palette */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--color-canvas));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--color-sand));
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--color-taupe));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* One screen of the "presentation". Arrow keys jump from slide to slide. */
+  .slide {
+    @apply flex min-h-[100svh] flex-col justify-center py-[max(1.5rem,5svh)];
+    scroll-snap-align: start;
+  }
+
+  /* Small uppercase heading used for sub-groups (Software, Education, …) */
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-label text-ink;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
