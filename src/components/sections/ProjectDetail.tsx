@@ -6,14 +6,30 @@ import { ImageSlot } from '@/components/ui/ImageSlot';
 import { EASE, Reveal, RevealItem } from '@/components/ui/Reveal';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 
-function Copy({ label, block, headingId }: { label: string; block: TextBlock; headingId?: string }) {
+function Copy({
+  label,
+  block,
+  headingId,
+  compact = false,
+}: {
+  label: string;
+  block: TextBlock;
+  headingId?: string;
+  /** Smaller type, for slides that share the screen with images. */
+  compact?: boolean;
+}) {
   return (
     <RevealItem>
       <SectionLabel>{label}</SectionLabel>
-      <h3 id={headingId} className="text-2xl font-semibold leading-tight tracking-[-0.02em] text-ink md:text-3xl">
+      <h3
+        id={headingId}
+        className={`font-semibold leading-tight tracking-[-0.02em] text-ink ${compact ? 'text-xl md:text-2xl' : 'text-2xl md:text-3xl'}`}
+      >
         {block.title}
       </h3>
-      <p className="mt-5 max-w-xl text-[15px] leading-[1.85] text-espresso">
+      <p
+        className={`max-w-xl text-espresso ${compact ? 'mt-3 text-[13.5px] leading-[1.7]' : 'mt-5 text-[15px] leading-[1.85]'}`}
+      >
         <Highlight text={block.body} terms={block.highlights} />
       </p>
     </RevealItem>
@@ -108,51 +124,51 @@ export function ProjectDetail({ project }: { project: Project }) {
         </Reveal>
       </section>
 
-      {/* ── 3. DESIGN PROCESS — two screens: text, then images ─ */}
-      <section id={ids.process} aria-labelledby={`${ids.process}-title`}>
-        <div className="slide px-gutter">
-          <Reveal className="grid gap-10 lg:grid-cols-2 lg:gap-20">
-            <Copy label="design process" block={sections.process} headingId={`${ids.process}-title`} />
+      {/* ── 3. DESIGN PROCESS — one screen: compact text left, two images right ─ */}
+      <section
+        id={ids.process}
+        aria-labelledby={`${ids.process}-title`}
+        className="slide grid items-center gap-10 px-gutter lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] lg:gap-12 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,2fr)] xl:gap-14"
+      >
+        <Reveal className="space-y-8">
+          <Copy label="design process" block={sections.process} headingId={`${ids.process}-title`} compact />
 
-            {sections.process.materials && (
-              <RevealItem className="lg:pt-10">
-                <h4 className="eyebrow">{sections.process.materials.title}</h4>
-                <p className="mt-4 max-w-md text-[15px] leading-[1.85] text-espresso">
-                  {sections.process.materials.body}
-                </p>
-                <dl className="mt-8 space-y-5">
-                  {sections.process.materials.callouts.map((callout) => (
-                    <div key={callout.label}>
-                      <dt className="font-hand text-lg leading-none text-ink">{callout.label}</dt>
-                      <dd className="mt-1.5 text-[13px] text-taupe">{callout.text}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </RevealItem>
-            )}
-          </Reveal>
-        </div>
-
-        <div className="slide px-gutter">
-          <Reveal className="grid gap-10 md:grid-cols-2 md:gap-10">
+          {sections.process.materials && (
             <RevealItem>
-              {/* IMAGE: sketch — `project-XX-sketch.*` (sketches / ideation boards) */}
-              <ImageSlot image={images.sketch} aspect="" frameClassName="h-[30svh] md:h-[54svh]">
-                <AnnotationOverlay items={images.sketch.annotations}>
-                  {/* OVERLAY SLOT (sketch) — e.g. circled details, hand-drawn arrows */}
-                </AnnotationOverlay>
-              </ImageSlot>
+              <h4 className="eyebrow">{sections.process.materials.title}</h4>
+              <p className="mt-3 max-w-md text-[13.5px] leading-[1.7] text-espresso">
+                {sections.process.materials.body}
+              </p>
+              <dl className="mt-5 space-y-3.5">
+                {sections.process.materials.callouts.map((callout) => (
+                  <div key={callout.label}>
+                    <dt className="font-hand text-base leading-none text-ink">{callout.label}</dt>
+                    <dd className="mt-1 text-[12.5px] leading-snug text-taupe">{callout.text}</dd>
+                  </div>
+                ))}
+              </dl>
             </RevealItem>
-            <RevealItem className="md:mt-12">
-              {/* IMAGE: process — `project-XX-process.*` (prototype / materials diagram) */}
-              <ImageSlot image={images.process} aspect="" frameClassName="h-[30svh] md:h-[54svh]">
-                <AnnotationOverlay items={images.process.annotations}>
-                  {/* OVERLAY SLOT (process) */}
-                </AnnotationOverlay>
-              </ImageSlot>
-            </RevealItem>
-          </Reveal>
-        </div>
+          )}
+        </Reveal>
+
+        <Reveal className="grid gap-6 md:grid-cols-2 md:gap-8">
+          <RevealItem>
+            {/* IMAGE: sketch — `project-XX-sketch.*` (sketches / ideation boards) */}
+            <ImageSlot image={images.sketch} aspect="" frameClassName="h-[30svh] md:h-[58svh]">
+              <AnnotationOverlay items={images.sketch.annotations}>
+                {/* OVERLAY SLOT (sketch) — e.g. circled details, hand-drawn arrows */}
+              </AnnotationOverlay>
+            </ImageSlot>
+          </RevealItem>
+          <RevealItem className="md:mt-12">
+            {/* IMAGE: process — `project-XX-process.*` (prototype / materials diagram) */}
+            <ImageSlot image={images.process} aspect="" frameClassName="h-[30svh] md:h-[58svh]">
+              <AnnotationOverlay items={images.process.annotations}>
+                {/* OVERLAY SLOT (process) */}
+              </AnnotationOverlay>
+            </ImageSlot>
+          </RevealItem>
+        </Reveal>
       </section>
 
       {/* ── 4. FINAL PRODUCT — image, description, specs ────── */}

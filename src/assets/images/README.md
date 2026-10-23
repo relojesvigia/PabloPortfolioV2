@@ -39,8 +39,8 @@ project-04-card.jpg      project-04-hero.jpg      project-04-concept.jpg
 project-04-sketch.jpg    project-04-process.jpg   project-04-final.jpg
 ```
 
-Project 01 = Automotive Pet Travel Pod · 02 = Bentwood Monocoque Lounger ·
-03 = Froggy Art Toy & Smart Box · 04 = Monolith Haptic Audio Console
+Project 01 = Furniture Family · 02 = Vigía — Watch Brand ·
+03 = Room Lamp · 04 = Library Chair
 
 ## Using a different filename
 

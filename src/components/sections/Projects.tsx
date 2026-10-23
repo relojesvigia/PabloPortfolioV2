@@ -9,7 +9,7 @@ export function Projects() {
 
   return (
     <section id={SECTION_IDS.projects} aria-labelledby="projects-title" className="slide px-gutter">
-      <SectionHeader label={copy.label} title={copy.title} intro={copy.intro} titleId="projects-title" />
+      <SectionHeader label={copy.label} title={copy.title} titleId="projects-title" />
 
       <Reveal
         as="ul"

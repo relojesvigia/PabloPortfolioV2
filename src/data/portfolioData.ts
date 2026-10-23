@@ -185,8 +185,6 @@ export const sectionCopy = {
   projects: {
     label: 'selected work',
     title: 'Projects',
-    intro:
-      'Four products, from first sketch to final object — each one a study in how form, material and use shape each other.',
   },
   contact: {
     label: 'let’s talk',
@@ -364,12 +362,78 @@ export const experience: ExperienceItem[] = [
 
 export const projects: Project[] = [
   {
-    id: 'vigia-carajo',
+    id: 'furniture-family',
     number: '01',
-    title: 'Vigía — Carajo Automatic Watch',
+    title: 'Furniture Family',
+    shortTitle: 'Furniture Family',
+    subtitle: 'Furniture Design · Product Development',
+    tagline: 'A furniture collection combining traditional materials with contemporary geometries.',
+    sections: {
+      concept: {
+        title: 'Timeless everyday pieces',
+        body: 'A furniture collection that combines traditional materials with contemporary geometries. The goal is to create timeless, everyday pieces with strong proportions, quality materials, and a sense of permanence.',
+        highlights: ['traditional materials with contemporary geometries', 'a sense of permanence'],
+      },
+      ideation: {
+        title: 'Translating language into furniture',
+        body: 'Dark wood, leather, concrete and metal meet clean silhouettes, chamfered edges and subtle curves — timeless, everyday pieces that feel familiar without looking dated.',
+        highlights: ['clean silhouettes, chamfered edges and subtle curves', 'familiar without looking dated'],
+      },
+      process: {
+        title: 'Proportions and construction',
+        body: 'Sketches, 3D models and manufacturing planning; CNC-cut MDF templates, hand finishing and precise joinery. Each piece explores the relationship between proportions, materials, and construction, while keeping the collection visually consistent.',
+        highlights: ['CNC-cut MDF templates, hand finishing and precise joinery'],
+        materials: {
+          title: 'Materials & Manufacturing',
+          body: 'A consistent palette of solid wood, natural leather, concrete, and metal.',
+          callouts: [
+            {
+              label: 'Concrete parts',
+              text: 'Cast concrete panels add weight and contrast to the wood and leather.',
+            },
+            {
+              label: 'Template routing',
+              text: 'MDF templates guide the router so every piece is cut to the same profile, then finished by hand.',
+            },
+          ],
+        },
+      },
+      final: {
+        title: 'Furniture Family',
+        body: 'A table, lounge chair and lamp for contemporary homes, in one consistent material palette.',
+        highlights: ['contemporary homes'],
+      },
+    },
+    specs: [
+      { label: 'Materials', value: 'Wood, leather, concrete' },
+      { label: 'Pieces', value: 'Table, lounge chair, lamp' },
+      { label: 'Fabrication', value: 'Template routing & hand finishing' },
+      { label: 'Assembly', value: 'Mechanical joinery' },
+    ],
+    images: {
+      card: { src: 'project-01-card.jpg', alt: 'Furniture Family lounge chair and lamp' },
+      hero: { src: 'project-01-hero.jpg', alt: 'Furniture Family table, lounge chair and lamp in a concrete room' },
+      concept: { src: 'project-01-concept.jpg', alt: 'Wireframe 3D model of the lounge chair' },
+      sketch: {
+        src: 'project-01-sketch.jpg',
+        alt: 'Cast concrete panels for the collection',
+        caption: 'Concrete panels',
+      },
+      process: {
+        src: 'project-01-process.jpg',
+        alt: 'Routing a wooden part on a router table',
+        caption: 'Template routing',
+      },
+      final: { src: 'project-01-final.jpg', alt: 'Finished Furniture Family lounge chair, side table and lamp' },
+    },
+  },
+  {
+    id: 'vigia-carajo',
+    number: '02',
+    title: 'Vigía — Watch Brand',
     shortTitle: 'Vigía',
     subtitle: 'Product Design · Brand Identity',
-    tagline: 'A Mexican watch brand focused on timeless design, honest materials, and quality at a fair price.',
+    tagline: 'A Mexican watch brand focused on timeless design, honest materials and quality at a fair price.',
     sections: {
       concept: {
         title: 'Timeless design & honest materials',
@@ -378,20 +442,20 @@ export const projects: Project[] = [
       },
       ideation: {
         title: 'Simple, distinctive identity',
-        body: 'The brand identity was developed around the idea of creating something simple but distinctive. The name, logo, dark color palette, and visual language connect traditional watchmaking with a more contemporary approach to design.',
-        highlights: ['simple but distinctive'],
+        body: 'Brand and watch were developed together — name, logo and dark palette connect traditional watchmaking with a contemporary approach. Carajo, the first model, is built for everyday wear and longevity.',
+        highlights: ['developed together', 'everyday wear and longevity'],
       },
       process: {
         title: 'Product & brand developed together',
-        body: 'The project involved developing the brand and the watch together, from the logo and visual identity to the product’s proportions, materials, finishes, and personalization. Each decision was made to keep the product and the brand consistent.',
-        highlights: ['developing the brand and the watch together'],
+        body: 'Logo, visual identity, watch design, leather box design, proportions and finishes were designed in parallel; laser engraving adds personalization. Each decision was made to keep the product and the brand consistent.',
+        highlights: ['designed in parallel'],
         materials: {
           title: 'Materials & Details',
           body: 'The stainless-steel case, clean silhouette, and restrained details give the watch its character.',
           callouts: [
             {
-              label: 'Brand Identity',
-              text: 'The logo and visual language establish a recognizable identity across the watch, packaging, and communication.',
+              label: 'Leather box',
+              text: 'A brown leather box with a brass stud carries the logo and completes the unboxing.',
             },
             {
               label: 'Personalization',
@@ -407,107 +471,26 @@ export const projects: Project[] = [
       },
     },
     specs: [
-      { label: 'Case', value: '40 mm, 316L steel' },
+      { label: 'Case', value: '40 mm · 316L steel' },
       { label: 'Crystal', value: 'Sapphire' },
       { label: 'Movement', value: 'Japanese automatic' },
       { label: 'Water resistance', value: '5 ATM' },
     ],
     images: {
-      card: { src: 'project-01-card.jpg', alt: 'Vigía watch thumbnail' },
-      hero: { src: 'project-01-hero.jpg', alt: 'Vigía Carajo banner image' },
-      concept: { src: 'project-01-concept.jpg', alt: 'Concept visualization of the Vigía watch' },
-      sketch: {
-        src: 'project-01-sketch.jpg',
-        alt: 'Brand identity and watch sketches',
-        caption: 'Early form sketches',
-      },
-      process: {
-        src: 'project-01-process.jpg',
-        alt: 'Materials and laser engraving process',
-        caption: 'Materials & enclosure study',
-        annotations: [
-          { x: 24, y: 68, label: 'Brand Identity', note: 'Logo & visual language', dx: 14, dy: 14 },
-          { x: 70, y: 30, label: 'Personalization', note: 'Laser engraving', dx: -14, dy: -14 },
-        ],
-      },
-      final: { src: 'project-01-final.jpg', alt: 'Final Carajo automatic watch photo' },
-    },
-  },
-  {
-    id: 'furniture-family',
-    number: '02',
-    title: 'Furniture Family',
-    shortTitle: 'Furniture Family',
-    subtitle: 'Furniture Design · Product Development',
-    tagline:
-      'A furniture collection combining traditional materials with contemporary geometries to create timeless, everyday pieces.',
-    sections: {
-      concept: {
-        title: 'Timeless everyday pieces',
-        body: 'A furniture collection that combines traditional materials with contemporary geometries. The goal is to create timeless, everyday pieces with strong proportions, quality materials, and a sense of permanence.',
-        highlights: ['traditional materials with contemporary geometries', 'a sense of permanence'],
-      },
-      ideation: {
-        title: 'Translating language into furniture',
-        body: 'The collection explores how the design language behind Vigía can translate into furniture. Dark wood, leather, and metal are combined with clean silhouettes, chamfered edges, and subtle curves to create pieces that feel familiar without looking outdated.',
-        highlights: ['design language behind Vigía', 'familiar without looking outdated'],
-      },
-      process: {
-        title: 'Proportions and construction',
-        body: 'The project developed through sketching, 3D modeling, and planning the manufacturing process. Each piece explores the relationship between proportions, materials, and construction, while keeping the collection visually consistent.',
-        highlights: ['proportions, materials, and construction'],
-        materials: {
-          title: 'Materials & Manufacturing',
-          body: 'A consistent palette of solid wood, natural leather, concrete, and metal.',
-          callouts: [
-            {
-              label: 'Table Design',
-              text: 'Chamfered edges and contrasting wood and concrete balance solid forms and lighter structural elements.',
-            },
-            {
-              label: 'Lounge Chair & Lamp',
-              text: 'Wood, leather, and concrete combine to extend the collection’s material language into seating and lighting.',
-            },
-          ],
-        },
-      },
-      final: {
-        title: 'Furniture Family',
-        body: 'Furniture and lighting for contemporary homes, in one consistent material palette.',
-        highlights: ['contemporary homes'],
-      },
-    },
-    specs: [
-      { label: 'Materials', value: 'Solid wood, leather, concrete' },
-      { label: 'Fabrication', value: 'CNC templates & hand finishing' },
-      { label: 'Assembly', value: 'Mechanical joinery' },
-    ],
-    images: {
-      card: { src: 'project-02-card.jpg', alt: 'Furniture collection thumbnail' },
-      hero: { src: 'project-02-hero.jpg', alt: 'Furniture Family banner image' },
-      concept: { src: 'project-02-concept.jpg', alt: 'Concept visualization of the furniture collection' },
+      card: { src: 'project-02-card.jpg', alt: 'Vigía watch worn with a coffee in hand' },
+      hero: { src: 'project-02-hero.jpg', alt: 'Vigía Carajo watch on the wrist' },
+      concept: { src: 'project-02-concept.jpg', alt: 'Vigía logo' },
       sketch: {
         src: 'project-02-sketch.jpg',
-        alt: 'Ideation sketches of table and chair',
-        caption: '1:5 card models',
+        alt: 'Vigía leather watch box',
+        caption: 'Leather box',
       },
       process: {
         src: 'project-02-process.jpg',
-        alt: 'Material samples and manufacturing process',
-        caption: 'Mould pressing',
-        annotations: [
-          { x: 42, y: 40, label: 'Table Design', note: 'Chamfered edges & wood', dx: 16, dy: -16 },
-          {
-            x: 18,
-            y: 82,
-            label: 'Materials & Manufacturing',
-            note: 'Solid wood, leather & concrete',
-            dx: 14,
-            dy: -8,
-          },
-        ],
+        alt: 'Assembling the watch hands with gloves and tweezers',
+        caption: 'Assembly',
       },
-      final: { src: 'project-02-final.jpg', alt: 'Finished Furniture Family photo in interior' },
+      final: { src: 'project-02-final.jpg', alt: 'Final Carajo automatic watch on the wrist' },
     },
   },
   {
@@ -516,23 +499,22 @@ export const projects: Project[] = [
     title: 'Room Lamp',
     shortTitle: 'Room Lamp',
     subtitle: 'Lighting · Ceramic slip casting',
-    tagline:
-      'A minimalistic rounded small lamp designed for children’s rooms, combining organic form with soft geometry.',
+    tagline: 'A small, rounded ceramic lamp for children’s rooms — organic form, soft geometry.',
     sections: {
       concept: {
         title: 'Organic form & soft geometry',
-        body: 'A minimalistic rounded small lamp made for kids rooms generally. The design draws inspiration from organic shapes, soft geometry, rounded profiles, and visual balance.',
+        body: 'A minimalistic rounded small lamp made for children’s rooms. The design draws inspiration from organic shapes, soft geometry, rounded profiles, and visual balance. Team: Ana Gabriela Aguilar Maya, Pablo Cobián Borobia, Maria Jose Burelo Diaz.',
         highlights: ['organic shapes, soft geometry'],
       },
       ideation: {
         title: 'Spherical lamp silhouettes',
-        body: 'Ideation focused on spherical lamp designs and circular forms, exploring proportions that feel playful, warm, and approachable for children’s spaces.',
-        highlights: ['playful, warm, and approachable'],
+        body: 'Spherical silhouettes explored for proportions that feel playful, warm and approachable, finished with glazed stripes and a soft spherical glow.',
+        highlights: ['playful, warm and approachable'],
       },
       process: {
         title: '3D modeling and slip casting',
-        body: 'The process involved 3D modeling the form, 3D printing the mold, laser-cutting MDF boxes for structural containment, preparing ceramic slip casting (colada de barbotina), and precise gypsum plaster mixing to cast and demould the ceramic body.',
-        highlights: ['3D printing the mold', 'ceramic slip casting'],
+        body: '3D-printed mould, plaster casting and ceramic slip casting (barbotina); glazed and kiln-fired. Gypsum plaster was mixed precisely to cast and demould the ceramic body.',
+        highlights: ['3D-printed mould', 'ceramic slip casting'],
         materials: {
           title: 'Ceramics & lighting',
           body: 'Ceramic slip-cast body with a spherical light fixture, finished with glazes and fired in a kiln.',
@@ -555,86 +537,87 @@ export const projects: Project[] = [
       { label: 'Material', value: 'Slip-cast ceramic' },
       { label: 'Type', value: 'Table lamp' },
       { label: 'Finish', value: 'Glazed, custom colours' },
-      { label: 'Team', value: 'Ana Gabriela Aguilar Maya, Pablo Cobián Borobia, Maria Jose Burelo Diaz' },
+      { label: 'For', value: 'Children’s rooms' },
     ],
     images: {
-      card: { src: 'project-03-card.jpg', alt: 'Room lamp thumbnail' },
-      hero: { src: 'project-03-hero.jpg', alt: 'Room lamp banner image' },
-      concept: { src: 'project-03-concept.jpg', alt: 'Concept sketching and inspiration' },
+      card: { src: 'project-03-card.jpg', alt: 'Two striped ceramic Room Lamps' },
+      hero: { src: 'project-03-hero.jpg', alt: 'Room Lamps in blue and black stripes' },
+      concept: { src: 'project-03-concept.jpg', alt: 'Pair of glazed Room Lamps' },
       sketch: {
         src: 'project-03-sketch.jpg',
-        alt: 'Spherical lamp sketches',
-        caption: 'Silhouette studies',
+        alt: 'Plaster mould for slip casting',
+        caption: 'Plaster mould',
       },
       process: {
         src: 'project-03-process.jpg',
-        alt: 'Plaster mold casting and ceramic slip process',
-        caption: 'Slush moulding',
+        alt: 'Unglazed slip-cast lamp bodies on the workbench',
+        caption: 'Slip-cast bodies',
         annotations: [
           { x: 50, y: 85, label: 'Body Construction', note: 'Slip-cast ceramic', dx: -18, dy: -6 },
-          { x: 62, y: 35, label: 'Lighting Integration', note: 'Spherical light source', dx: 14, dy: -14 },
+          { x: 62, y: 35, label: 'Lighting Integration', note: 'Spherical light source', dx: -14, dy: -14 },
         ],
       },
-      final: { src: 'project-03-final.jpg', alt: 'Finished Room Lamp in a setting' },
+      final: { src: 'project-03-final.jpg', alt: 'Room Lamps glowing in a dark room' },
     },
   },
   {
-    id: 'project-04',
+    id: 'library-chair',
     number: '04',
-    title: 'Lorem Ipsum Title',
-    shortTitle: 'Lorem Ipsum',
-    subtitle: 'Category · Subtitle',
-    tagline: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    title: 'Library Chair',
+    shortTitle: 'Library Chair',
+    subtitle: 'Furniture Design · Room Ergonomics',
+    tagline: 'A reading bench for my nephew — seat, bookshelf and play space in one piece.',
     sections: {
       concept: {
-        title: 'Lorem Ipsum Concept',
-        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolor sit amet magna aliqua.',
+        title: 'Seat, shelf and play space',
+        body: 'A reading bench designed for my nephew that brings a seat, a bookshelf and a play space together in one piece of furniture.',
+        highlights: ['a seat, a bookshelf and a play space'],
       },
       ideation: {
-        title: 'Lorem Ipsum Ideation',
-        body: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        title: 'Made to a child’s scale',
+        body: 'Stepped side towers frame a cushioned seat, while open cubbies keep books within a child’s reach. Softly curved sides and a warm tinted finish make it feel friendly and at home in the room.',
+        highlights: ['within a child’s reach', 'friendly and at home in the room'],
       },
       process: {
-        title: 'Lorem Ipsum Design Process',
-        body: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+        title: 'From 3D model to pine build',
+        body: '3D model and cut planning; pine panels cut, glued and joined, then sanded and sealed with a tinted varnish.',
+        highlights: ['pine panels cut, glued and joined'],
         materials: {
-          title: 'Lorem Materials',
-          body: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+          title: 'Materials & Finish',
+          body: 'Solid pine panels sealed with a warm tinted varnish, with a cushioned seat.',
           callouts: [
-            { label: 'Callout 1', text: 'Lorem ipsum dolor sit amet' },
-            { label: 'Callout 2', text: 'Consectetur adipiscing elit' },
+            { label: 'Stepped towers', text: 'Side towers frame the seat and double as shelves.' },
+            { label: 'Open cubbies', text: 'Books stay within a child’s reach.' },
           ],
         },
       },
       final: {
-        title: 'Lorem Ipsum Final Product',
-        body: 'Sed ut perspiciatis unde omnis iste natus error.',
+        title: 'Library Chair',
+        body: 'A seat, bookshelf and play space in one, made for my nephew’s room.',
+        highlights: ['made for my nephew’s room'],
       },
     },
     specs: [
-      { label: 'Specification 1', value: 'Value' },
-      { label: 'Specification 2', value: 'Value' },
-      { label: 'Specification 3', value: 'Value' },
+      { label: 'Material', value: 'Solid pine' },
+      { label: 'Finish', value: 'Tinted varnish' },
+      { label: 'Function', value: 'Seat & book storage' },
+      { label: 'Made for', value: 'My nephew’s room' },
     ],
     images: {
-      card: { src: 'project-04-card.jpg', alt: 'Lorem ipsum thumbnail' },
-      hero: { src: 'project-04-hero.jpg', alt: 'Lorem ipsum hero image' },
-      concept: { src: 'project-04-concept.jpg', alt: 'Lorem ipsum concept image' },
+      card: { src: 'project-04-card.jpg', alt: 'Library Chair in tinted pine with a white cushion' },
+      hero: { src: 'project-04-hero.jpg', alt: 'Library Chair reading bench' },
+      concept: { src: 'project-04-concept.jpg', alt: 'Library Chair with stepped towers and open cubbies' },
       sketch: {
         src: 'project-04-sketch.jpg',
-        alt: 'Lorem ipsum sketch image',
-        caption: 'Control layout studies',
+        alt: '3D model of the Library Chair',
+        caption: '3D model',
       },
       process: {
         src: 'project-04-process.jpg',
-        alt: 'Lorem ipsum process image',
-        caption: 'Materials',
-        annotations: [
-          { x: 34, y: 38, label: 'Label 1', note: 'Short note', dx: 14, dy: -16 },
-          { x: 72, y: 74, label: 'Label 2', note: 'Short note', dx: -16, dy: 10 },
-        ],
+        alt: 'Pine panels clamped during glue-up',
+        caption: 'Glue-up',
       },
-      final: { src: 'project-04-final.jpg', alt: 'Lorem ipsum final image' },
+      final: { src: 'project-04-final.jpg', alt: 'Library Chair in use in the room' },
     },
   },
 ];
