@@ -1,7 +1,6 @@
-import { education, experience, sectionCopy, SECTION_IDS } from '@/data/portfolioData';
-import { ContactLinks } from '@/components/ui/ContactLinks';
-import { Reveal, RevealItem } from '@/components/ui/Reveal';
-import { SectionHeader } from '@/components/ui/SectionHeader';
+import { motion } from 'framer-motion';
+import { education, experience } from '@/data/portfolioData';
+import { revealContainer, revealItem } from '@/components/ui/Reveal';
 
 interface TimelineEntry {
   key: string;
@@ -12,88 +11,50 @@ interface TimelineEntry {
   description: string;
 }
 
-function Timeline({
-  heading,
-  entries,
-  twoColumns = false,
-}: {
-  heading: string;
-  entries: TimelineEntry[];
-  twoColumns?: boolean;
-}) {
+export const experienceEntries: TimelineEntry[] = experience.map((item) => ({
+  key: `${item.role}-${item.period}`,
+  period: item.period,
+  title: item.role,
+  organisation: item.company,
+  location: item.location,
+  description: item.description,
+}));
+
+export const educationEntries: TimelineEntry[] = education.map((item) => ({
+  key: `${item.institution}-${item.period}`,
+  period: item.period,
+  title: item.degree,
+  organisation: item.institution,
+  location: item.location,
+  description: item.description,
+}));
+
+/** A CV timeline (experience or education): period on the left, details on the right. */
+export function CVTimeline({ heading, entries }: { heading: string; entries: TimelineEntry[] }) {
   return (
-    <div>
-      <h3 className="eyebrow">{heading}</h3>
-      <Reveal
-        as="ol"
-        className={`mt-8 space-y-9 ${twoColumns ? 'xl:grid xl:grid-cols-2 xl:gap-x-16 xl:gap-y-10 xl:space-y-0' : ''}`}
-      >
+    <motion.section variants={revealContainer}>
+      <motion.h3 variants={revealItem} className="eyebrow">
+        {heading}
+      </motion.h3>
+      <motion.ol variants={revealContainer} className="mt-6 space-y-7">
         {entries.map((entry) => (
-          <RevealItem
-            as="li"
+          <motion.li
+            variants={revealItem}
             key={entry.key}
-            className={`grid gap-3 ${twoColumns ? 'xl:gap-2' : 'md:grid-cols-[12rem_1fr] md:gap-12'}`}
+            className="grid gap-1.5 sm:grid-cols-[8.5rem_1fr] sm:gap-6 print:break-inside-avoid"
           >
-            <p className="pt-1 text-xs font-medium tabular-nums text-taupe">{entry.period}</p>
+            <p className="pt-0.5 text-xs font-medium tabular-nums text-taupe">{entry.period}</p>
             <div>
-              <h4 className="text-lg font-semibold leading-snug tracking-[-0.01em] text-ink">{entry.title}</h4>
-              <p className="mt-1 text-sm text-espresso">
+              <h4 className="text-[15px] font-semibold leading-snug text-ink">{entry.title}</h4>
+              <p className="mt-0.5 text-[13px] text-espresso">
                 {entry.organisation}
                 <span className="text-taupe"> · {entry.location}</span>
               </p>
-              <p className="mt-4 max-w-2xl text-[14px] leading-[1.85] text-espresso">{entry.description}</p>
+              <p className="mt-2 text-[13px] leading-[1.7] text-espresso">{entry.description}</p>
             </div>
-          </RevealItem>
+          </motion.li>
         ))}
-      </Reveal>
-    </div>
-  );
-}
-
-export function Experience() {
-  const copy = sectionCopy.experience;
-
-  return (
-    <section id={SECTION_IDS.experience} aria-labelledby="experience-title">
-      {/* Screen 1 — professional experience */}
-      <div className="slide px-gutter">
-        <SectionHeader label={copy.label} title={copy.title} titleId="experience-title" />
-        <div className="mt-10">
-          <Timeline
-            heading="Professional experience"
-            twoColumns
-            entries={experience.map((item) => ({
-              key: `${item.role}-${item.period}`,
-              period: item.period,
-              title: item.role,
-              organisation: item.company,
-              location: item.location,
-              description: item.description,
-            }))}
-          />
-        </div>
-      </div>
-
-      {/* Screen 2 — education + contact bar */}
-      <div className="slide px-gutter">
-        <Timeline
-          heading="Education"
-          entries={education.map((item) => ({
-            key: `${item.institution}-${item.period}`,
-            period: item.period,
-            title: item.degree,
-            organisation: item.institution,
-            location: item.location,
-            description: item.description,
-          }))}
-        />
-
-        <Reveal className="mt-20">
-          <RevealItem className="bg-beige px-7 py-7 sm:px-10 md:px-14">
-            <ContactLinks align="spread" />
-          </RevealItem>
-        </Reveal>
-      </div>
-    </section>
+      </motion.ol>
+    </motion.section>
   );
 }

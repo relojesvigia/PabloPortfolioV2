@@ -6,13 +6,13 @@ import { useFullscreen } from '@/hooks/useFullscreen';
 import { useScrollProgress } from '@/hooks/useScrollProgress';
 import { useSlideNavigation } from '@/hooks/useSlideNavigation';
 import { useSoundEffect } from '@/hooks/useSoundEffect';
+import { CVProvider } from '@/hooks/useCV';
+import { CVPage, CVPanel } from '@/components/layout/CVOverlay';
 import { MobileDrawer } from '@/components/layout/MobileDrawer';
 import { NavigationHint } from '@/components/layout/NavigationHint';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { About } from '@/components/sections/About';
 import { Contact } from '@/components/sections/Contact';
-import { CV } from '@/components/sections/CV';
-import { Experience } from '@/components/sections/Experience';
 import { ProjectDetail } from '@/components/sections/ProjectDetail';
 import { Projects } from '@/components/sections/Projects';
 
@@ -46,20 +46,24 @@ export default function App() {
     // reducedMotion="user": honours prefers-reduced-motion — transforms are
     // skipped, opacity fades remain.
     <MotionConfig reducedMotion="user">
-      <main className="overflow-x-clip lg:mr-sidebar">
-        <About />
-        <CV />
-        <Experience />
-        <Projects />
-        {projects.map((project) => (
-          <ProjectDetail key={project.id} project={project} />
-        ))}
-        <Contact />
-      </main>
+      <CVProvider>
+        <main className="overflow-x-clip lg:mr-sidebar">
+          <About />
+          <Projects />
+          {projects.map((project) => (
+            <ProjectDetail key={project.id} project={project} />
+          ))}
+          <Contact />
+        </main>
 
-      <NavigationHint fullscreenSupported={fullscreen.supported} />
-      <Sidebar {...navProps} />
-      <MobileDrawer {...navProps} />
+        <NavigationHint fullscreenSupported={fullscreen.supported} />
+        <Sidebar {...navProps} />
+        <MobileDrawer {...navProps} />
+
+        {/* The CV, outside the slide flow: side panel ("View CV") and full page (#/cv). */}
+        <CVPanel />
+        <CVPage />
+      </CVProvider>
     </MotionConfig>
   );
 }

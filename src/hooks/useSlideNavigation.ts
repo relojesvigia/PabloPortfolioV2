@@ -37,6 +37,8 @@ export function useSlideNavigation() {
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      // The CV panel / page is open on top: let its own scrolling handle the keys.
+      if (document.documentElement.dataset.cvOpen) return;
 
       if (e.target instanceof Element && e.target.closest('input, textarea, select, [contenteditable="true"]')) return;
 

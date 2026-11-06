@@ -1,6 +1,7 @@
 import { motion, type MotionValue } from 'framer-motion';
-import { navParentId, profile, type NavItem } from '@/data/portfolioData';
+import { navParentId, profile, SECTION_IDS, type NavItem } from '@/data/portfolioData';
 import { EASE } from '@/components/ui/Reveal';
+import { CVButton } from './CVOverlay';
 import { NavRail } from './NavRail';
 
 /* ── Section list (shared by the desktop sidebar and the mobile drawer) ── */
@@ -171,7 +172,7 @@ export function Sidebar({
       className="fixed right-0 top-0 z-30 hidden h-screen w-sidebar flex-col justify-between bg-canvas px-6 py-10 lg:flex xl:px-8"
       aria-label="Page navigation"
     >
-      <a href="#about" className="text-[11px] font-semibold uppercase tracking-label text-ink">
+      <a href={`#${SECTION_IDS.about}`} className="text-[11px] font-semibold uppercase tracking-label text-ink">
         {profile.name}
       </a>
 
@@ -182,6 +183,7 @@ export function Sidebar({
       </div>
 
       <div className="flex flex-col items-start gap-3">
+        <CVButton className="mb-3" />
         <FullscreenToggle supported={fullscreenSupported} active={fullscreenActive} onToggle={onToggleFullscreen} />
         <SoundToggle enabled={soundEnabled} onToggle={onToggleSound} />
       </div>

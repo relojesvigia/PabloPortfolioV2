@@ -1,4 +1,5 @@
 import { profile, sectionCopy, SECTION_IDS } from '@/data/portfolioData';
+import { CVButton } from '@/components/layout/CVOverlay';
 import { ContactLinks } from '@/components/ui/ContactLinks';
 import { Highlight } from '@/components/ui/Highlight';
 import { Reveal, RevealItem } from '@/components/ui/Reveal';
@@ -40,9 +41,12 @@ export function Contact() {
         <span>
           {profile.title} · {profile.location}
         </span>
-        <a href={`#${SECTION_IDS.about}`} className="transition-colors hover:text-ink">
-          Back to top ↑
-        </a>
+        <span className="flex items-center gap-8">
+          <CVButton className="!text-[11px] !font-normal !normal-case !tracking-normal !text-taupe hover:!text-ink" />
+          <a href={`#${SECTION_IDS.about}`} className="transition-colors hover:text-ink">
+            Back to top ↑
+          </a>
+        </span>
       </footer>
     </section>
   );

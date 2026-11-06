@@ -21,7 +21,23 @@ Each project uses six slots. `XX` is the project number (01–04).
 | `project-XX-concept`   | Concept & Ideation (right column)   | 4:5 portrait    |
 | `project-XX-sketch`    | Design process — sketches           | 4:3             |
 | `project-XX-process`   | Design process — prototype/material | 4:3             |
-| `project-XX-final`     | Final product                       | 16:9            |
+| `project-XX-final`     | Final product — sliding strip       | any (see below) |
+
+### Final product slider
+
+The final-product slide is a slow, endless strip of photos at one fixed
+height; each photo keeps its own width. To add a photo, drop in the next
+number; to remove one, delete it:
+
+```
+project-01-final.jpg      ← first photo (required)
+project-01-final-2.jpg
+project-01-final-3.jpg    ← add -4, -5, … for more
+```
+
+Numbers set the order. Gaps are fine (`-2`, `-5` still works). Hovering
+pauses the strip. Speed: `secondsPerImage` in
+`src/components/ui/ImageMarquee.tsx` (higher = slower).
 
 ### Full list
 

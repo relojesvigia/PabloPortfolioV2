@@ -7,9 +7,11 @@ import { EASE, revealItem } from './Reveal';
  * Skill row with a percentage bar. One motion value drives both the bar width
  * and the counter, so they stay in sync as it fills on scroll into view.
  */
-export function SkillBar({ skill }: { skill: Skill }) {
+export function SkillBar({ skill, playOnMount = false }: { skill: Skill; playOnMount?: boolean }) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(trackRef, { once: true, margin: '0px 0px -10% 0px' });
+  const seen = useInView(trackRef, { once: true, margin: '0px 0px -10% 0px' });
+  // In the CV panel/page the bars fill as soon as it opens (so a printed PDF is never empty).
+  const inView = playOnMount || seen;
   const reduceMotion = useReducedMotion();
 
   const value = useMotionValue(0);

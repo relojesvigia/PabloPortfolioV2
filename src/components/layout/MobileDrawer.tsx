@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { profile } from '@/data/portfolioData';
 import { EASE } from '@/components/ui/Reveal';
+import { CVButton } from './CVOverlay';
 import { ProgressBar } from './ProgressBar';
 import { NavRail } from './NavRail';
 import { FullscreenToggle, SectionNav, SoundToggle, type SidebarProps } from './Sidebar';
@@ -152,6 +153,10 @@ export function MobileDrawer({
               </div>
 
               <div className="flex flex-col items-start gap-3">
+                {/* Closes the drawer, then the CV panel slides in. */}
+                <span onClickCapture={close} className="mb-3">
+                  <CVButton />
+                </span>
                 <FullscreenToggle
                   supported={fullscreenSupported}
                   active={fullscreenActive}

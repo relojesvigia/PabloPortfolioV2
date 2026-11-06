@@ -142,7 +142,6 @@ export const profile = {
     'identity, functionality, and lasting character',
     'beauty, personality, and human connection',
   ],
-  bio: 'I’m an Industrial Designer based in Querétaro, Mexico, with a background in product development, materials, ergonomics, and design methodologies. My work spans product and furniture design, branding, visual communication, and entrepreneurship — across freelance collaborations and my own ventures, particularly Vigía.',
   pillars: [
     {
       category: 'Product design',
@@ -177,10 +176,6 @@ export const sectionCopy = {
     title: 'Strengths & tools',
     intro:
       'Bridging physical prototyping, CAD surface modelling, ergonomics and visual storytelling into character-driven products.',
-  },
-  experience: {
-    label: 'the path so far',
-    title: 'Experience & education',
   },
   projects: {
     label: 'selected work',
@@ -626,8 +621,6 @@ export const projects: Project[] = [
 
 export const SECTION_IDS = {
   about: 'about',
-  cv: 'cv',
-  experience: 'experience',
   projects: 'projects',
   contact: 'contact',
 } as const;
@@ -644,8 +637,6 @@ export const subsectionId = (projectId: string, key: ProjectSubsectionKey) => `$
 
 export const navSections: NavItem[] = [
   { id: SECTION_IDS.about, label: 'About' },
-  { id: SECTION_IDS.cv, label: 'CV' },
-  { id: SECTION_IDS.experience, label: 'Experience' },
   { id: SECTION_IDS.projects, label: 'Projects' },
   ...projects.map((project) => ({
     id: project.id,

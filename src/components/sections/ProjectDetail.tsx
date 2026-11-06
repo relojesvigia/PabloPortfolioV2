@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { subsectionId, type Project, type TextBlock } from '@/data/portfolioData';
 import { AnnotationOverlay } from '@/components/ui/AnnotationOverlay';
 import { Highlight } from '@/components/ui/Highlight';
+import { ImageMarquee } from '@/components/ui/ImageMarquee';
 import { ImageSlot } from '@/components/ui/ImageSlot';
 import { EASE, Reveal, RevealItem } from '@/components/ui/Reveal';
 import { SectionLabel } from '@/components/ui/SectionLabel';
@@ -41,7 +42,7 @@ function Copy({
  *   1. Hero slide       — #<id>
  *   2. Concept/Ideation — #<id>-concept
  *   3. Design process   — #<id>-process
- *   4. Final product    — #<id>-final
+ *   4. Final product    — #<id>-final (sliding strip: project-XX-final, -final-2, -final-3, …)
  *
  * IMAGES: every <ImageSlot> reads a filename from portfolioData.ts
  * (project.images.*). To swap an image, drop the file into
@@ -175,12 +176,10 @@ export function ProjectDetail({ project }: { project: Project }) {
       <section id={ids.final} aria-labelledby={`${ids.final}-title`} className="slide">
         <Reveal>
           <RevealItem>
-            {/* IMAGE: final — `project-XX-final.*` (hero-quality product shot) */}
-            <ImageSlot image={images.final} aspect="" frameClassName="h-[46svh] md:h-[60svh]">
-              <AnnotationOverlay items={images.final.annotations}>
-                {/* OVERLAY SLOT (final) */}
-              </AnnotationOverlay>
-            </ImageSlot>
+            {/* IMAGES: final — a slow sliding strip of `project-XX-final.*`,
+                `project-XX-final-2.*`, `project-XX-final-3.*`, … Add or delete
+                numbered files to change the photos; no code changes needed. */}
+            <ImageMarquee image={images.final} className="h-[46svh] md:h-[60svh]" />
           </RevealItem>
         </Reveal>
 

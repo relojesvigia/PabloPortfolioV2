@@ -63,9 +63,67 @@
     scroll-snap-align: start;
   }
 
+  /* Endless photo strip (ImageMarquee). The track holds two identical laps. */
+  .marquee-track {
+    animation: marquee var(--marquee-duration, 60s) linear infinite;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      overflow-x: auto;
+    }
+    .marquee-track {
+      animation: none;
+    }
+  }
+
   /* Small uppercase heading used for sub-groups (Software, Education, …) */
   .eyebrow {
     @apply text-[11px] font-semibold uppercase tracking-label text-ink;
+  }
+}
+
+/* "Download PDF" on the CV: print only the open CV panel/page, in full. */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+  html.print-cv,
+  html.print-cv body {
+    overflow: visible !important;
+    background: #fff !important;
+  }
+  html.print-cv #root > :not([data-cv-print]) {
+    display: none !important;
+  }
+  html.print-cv [data-cv-print],
+  html.print-cv [data-cv-print] .cv-scroll {
+    position: static !important;
+    inset: auto !important;
+    width: auto !important;
+    max-width: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    transform: none !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+  html.print-cv [data-cv-print] * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
 
