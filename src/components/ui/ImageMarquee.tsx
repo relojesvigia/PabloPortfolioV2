@@ -16,7 +16,7 @@ interface ImageMarqueeProps {
  * A slow, endless strip of photos at one fixed height; each photo keeps its own
  * width. ADD / REMOVE PHOTOS by adding or deleting numbered files next to the
  * first one — `project-01-final.jpg`, `project-01-final-2.jpg`,
- * `project-01-final-3.jpg`, … — no code changes. Hover pauses it.
+ * `project-01-final-3.jpg`, … — no code changes. It never pauses.
  */
 export function ImageMarquee({ image, className = '', secondsPerImage = 10 }: ImageMarqueeProps) {
   const urls = resolveImageSeries(image.src);

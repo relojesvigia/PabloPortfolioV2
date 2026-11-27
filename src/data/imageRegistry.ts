@@ -16,6 +16,24 @@ for (const [path, url] of Object.entries(modules)) {
   registry.set(normalize(path.replace('../assets/images/', '')), url);
 }
 
+/* Videos: same idea, from src/assets/videos/ (keep these short — long films are better as a YouTube/Vimeo `embed`). */
+const videoModules = import.meta.glob<string>('../assets/videos/**/*.{mp4,webm,mov,m4v,MP4,MOV,WEBM,M4V}', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+});
+const videoRegistry = new Map<string, string>();
+for (const [path, url] of Object.entries(videoModules)) {
+  videoRegistry.set(normalize(path.replace('../assets/videos/', '')), url);
+}
+
+/** URL for a video in src/assets/videos/, or undefined when it hasn't been added yet. */
+export function resolveVideo(src?: string): string | undefined {
+  if (!src) return undefined;
+  if (/^(https?:)?\/\//.test(src) || src.startsWith('/')) return src;
+  return videoRegistry.get(normalize(src));
+}
+
 /**
  * Every image in a numbered series, in order: the base file plus any
  * `<name>-2`, `<name>-3`, … next to it. E.g. "project-01-final.jpg" →

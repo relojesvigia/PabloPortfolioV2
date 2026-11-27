@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import type { Project } from '@/data/portfolioData';
+import type { ProjectSummary } from '@/data/portfolioData';
 import { ImageSlot } from './ImageSlot';
 import { revealItem } from './Reveal';
 
 /** Overview card: image, number and title only — no frame. Links to the project. */
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project }: { project: ProjectSummary }) {
   return (
     <motion.li variants={revealItem}>
       <a href={`#${project.id}`} className="group block">

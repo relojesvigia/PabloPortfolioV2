@@ -61,7 +61,11 @@ export function ProjectDetail({ project }: { project: Project }) {
   };
 
   return (
-    <article id={project.id} aria-labelledby={`${project.id}-title`}>
+    <article
+      id={project.id}
+      aria-labelledby={`${project.id}-title`}
+      className={project.theme === 'dark' ? 'theme-dark bg-canvas text-espresso' : undefined}
+    >
       {/* ── 1. HERO SLIDE ───────────────────────────────────── */}
       <div className="slide">
         <header className="px-gutter">

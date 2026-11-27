@@ -4,6 +4,7 @@ import { profile } from '@/data/portfolioData';
 import { EASE } from '@/components/ui/Reveal';
 import { CVButton } from './CVOverlay';
 import { ProgressBar } from './ProgressBar';
+import { ScrollFade } from './ScrollFade';
 import { NavRail } from './NavRail';
 import { FullscreenToggle, SectionNav, SoundToggle, type SidebarProps } from './Sidebar';
 
@@ -146,11 +147,11 @@ export function MobileDrawer({
                 </button>
               </div>
 
-              <div className="my-8 min-h-0 flex-1 overflow-y-auto overscroll-contain">
+              <ScrollFade activeId={activeId} className="min-h-0 flex-1 overflow-y-auto overscroll-contain py-8">
                 <NavRail activeId={activeId}>
                   <SectionNav items={items} activeId={activeId} onNavigate={close} />
                 </NavRail>
-              </div>
+              </ScrollFade>
 
               <div className="flex flex-col items-start gap-3">
                 {/* Closes the drawer, then the CV panel slides in. */}

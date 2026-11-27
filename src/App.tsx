@@ -15,6 +15,7 @@ import { About } from '@/components/sections/About';
 import { Contact } from '@/components/sections/Contact';
 import { ProjectDetail } from '@/components/sections/ProjectDetail';
 import { Projects } from '@/components/sections/Projects';
+import { Videography } from '@/components/sections/Videography';
 
 export default function App() {
   useSlideNavigation();
@@ -53,6 +54,7 @@ export default function App() {
           {projects.map((project) => (
             <ProjectDetail key={project.id} project={project} />
           ))}
+          <Videography />
           <Contact />
         </main>
 

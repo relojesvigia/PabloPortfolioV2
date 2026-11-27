@@ -1,4 +1,4 @@
-import { projects, sectionCopy, SECTION_IDS } from '@/data/portfolioData';
+import { projects, sectionCopy, SECTION_IDS, videography } from '@/data/portfolioData';
 import { ProjectCard } from '@/components/ui/ProjectCard';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
@@ -13,9 +13,9 @@ export function Projects() {
 
       <Reveal
         as="ul"
-        className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4 lg:gap-x-8 lg:[&>li:nth-child(even)]:mt-10"
+        className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-5 lg:gap-x-6 lg:[&>li:nth-child(even)]:mt-10"
       >
-        {projects.map((project) => (
+        {[...projects, videography].map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </Reveal>

@@ -1,49 +1,16 @@
 import { motion } from 'framer-motion';
-import { profile, projects, sectionCopy, SECTION_IDS } from '@/data/portfolioData';
+import { profile, sectionCopy, SECTION_IDS } from '@/data/portfolioData';
 import { CVButton } from '@/components/layout/CVOverlay';
 import { Highlight } from '@/components/ui/Highlight';
-import { ImageSlot } from '@/components/ui/ImageSlot';
 import { Reveal, RevealItem, revealContainer, revealItem } from '@/components/ui/Reveal';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 
-/** Small 2×2 preview of the projects (opening slide, right side). Each tile jumps to its project. */
-function ProjectPeek() {
-  return (
-    <Reveal as="ul" aria-label="Projects preview" className="grid grid-cols-2 gap-x-5 gap-y-6">
-      {projects.map((project) => (
-        <RevealItem as="li" key={project.id}>
-          <a href={`#${project.id}`} className="group block">
-            <ImageSlot
-              image={project.images.card}
-              aspect="aspect-[4/5]"
-              showCaption={false}
-              frameClassName="overflow-hidden"
-              mediaClassName="transition-transform duration-[1200ms] ease-out-expo group-hover:scale-[1.04]"
-            />
-            <p className="mt-2.5 flex items-baseline gap-2 text-[11px] leading-snug">
-              <span className="font-semibold tabular-nums text-taupe">{project.number}</span>
-              <span className="font-medium text-ink">{project.shortTitle}</span>
-            </p>
-          </a>
-        </RevealItem>
-      ))}
-    </Reveal>
-  );
-}
-
-/**
- * Opening slide: name, title, statement and focus areas — the main thing on
- * screen — with a small preview of the four projects on the right (screens 1280px+).
- */
+/** Opening slide: name, title, statement and focus areas, with the "View CV" button. */
 export function About() {
   const [firstName, ...rest] = profile.name.split(' ');
 
   return (
-    <section
-      id={SECTION_IDS.about}
-      aria-label="About"
-      className="slide relative grid items-center gap-12 px-gutter xl:grid-cols-[minmax(0,1fr)_14rem] xl:gap-14 2xl:grid-cols-[minmax(0,1fr)_19rem] 2xl:gap-20"
-    >
+    <section id={SECTION_IDS.about} aria-label="About" className="slide relative px-gutter">
       <div>
         <Reveal className="max-w-5xl">
           <RevealItem>
@@ -85,10 +52,6 @@ export function About() {
             <CVButton variant="pill" />
           </RevealItem>
         </Reveal>
-      </div>
-
-      <div className="hidden xl:block">
-        <ProjectPeek />
       </div>
     </section>
   );

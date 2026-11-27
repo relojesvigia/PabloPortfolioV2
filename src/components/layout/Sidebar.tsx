@@ -3,6 +3,7 @@ import { navParentId, profile, SECTION_IDS, type NavItem } from '@/data/portfoli
 import { EASE } from '@/components/ui/Reveal';
 import { CVButton } from './CVOverlay';
 import { NavRail } from './NavRail';
+import { ScrollFade } from './ScrollFade';
 
 /* ── Section list (shared by the desktop sidebar and the mobile drawer) ── */
 
@@ -176,11 +177,11 @@ export function Sidebar({
         {profile.name}
       </a>
 
-      <div className="no-scrollbar my-10 min-h-0 flex-1 overflow-y-auto">
+      <ScrollFade activeId={activeId} className="no-scrollbar my-0 min-h-0 flex-1 overflow-y-auto py-10">
         <NavRail activeId={activeId}>
           <SectionNav items={items} activeId={activeId} />
         </NavRail>
-      </div>
+      </ScrollFade>
 
       <div className="flex flex-col items-start gap-3">
         <CVButton className="mb-3" />

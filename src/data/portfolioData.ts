@@ -78,6 +78,8 @@ export interface Project {
     final: TextBlock;
   };
   specs: Spec[];
+  /** 'dark' sets the project's slides on the dark palette (suits low-light photography). */
+  theme?: 'light' | 'dark';
   images: {
     card: ImageAsset; // projects overview grid
     hero: ImageAsset; // full-width hero slide
@@ -86,6 +88,38 @@ export interface Project {
     process: ImageAsset; // design process — prototype / materials
     final: ImageAsset; // final product
   };
+}
+
+/** What a card in the projects grid needs (product projects and the videography reel). */
+export type ProjectSummary = Pick<Project, 'id' | 'number' | 'title' | 'subtitle'> & {
+  images: { card: ImageAsset };
+};
+
+export interface Video {
+  /** URL-safe id. */
+  id: string;
+  title: string;
+  /** Small label above the title, e.g. "FPV · Sports events". */
+  kind: string;
+  description: string;
+  /** Frame shape: 9:16 reel, 16:9 or 2.39:1 cinema. */
+  aspect: 'vertical' | 'wide' | 'cinema';
+  /**
+   * Where the video comes from — use ONE:
+   *  - `embed`: a YouTube or Vimeo link (best for long or large videos).
+   *  - `src`:   a file in src/assets/videos/ (short clips; extension optional).
+   * Neither set → a placeholder naming the file to add.
+   */
+  embed?: string;
+  src?: string;
+  /** Still shown before playing: a file in src/assets/images/. */
+  poster: ImageAsset;
+}
+
+export interface Videography extends ProjectSummary {
+  shortTitle: string;
+  tagline: string;
+  videos: Video[];
 }
 
 export interface Skill {
@@ -471,21 +505,22 @@ export const projects: Project[] = [
       { label: 'Movement', value: 'Japanese automatic' },
       { label: 'Water resistance', value: '5 ATM' },
     ],
+    theme: 'dark',
     images: {
-      card: { src: 'project-02-card.jpg', alt: 'Vigía watch worn with a coffee in hand' },
-      hero: { src: 'project-02-hero.jpg', alt: 'Vigía Carajo watch on the wrist' },
-      concept: { src: 'project-02-concept.jpg', alt: 'Vigía logo' },
+      card: { src: 'project-02-card.jpg', alt: 'Carajo watch with a black dial on the wrist' },
+      hero: { src: 'project-02-hero.jpg', alt: 'Carajo watch on the wrist, under a dark sleeve' },
+      concept: { src: 'project-02-concept.jpg', alt: 'Vigía logo mark in peach on a dark background' },
       sketch: {
         src: 'project-02-sketch.jpg',
-        alt: 'Vigía leather watch box',
+        alt: 'Vigía brown leather watch box, closed',
         caption: 'Leather box',
       },
       process: {
         src: 'project-02-process.jpg',
-        alt: 'Assembling the watch hands with gloves and tweezers',
-        caption: 'Assembly',
+        alt: 'Flat lay of the watch, its exhibition caseback and steel bracelet',
+        caption: 'Case, caseback & bracelet',
       },
-      final: { src: 'project-02-final.jpg', alt: 'Final Carajo automatic watch on the wrist' },
+      final: { src: 'project-02-final.jpg', alt: 'Carajo watch photographs' },
     },
   },
   {
@@ -617,6 +652,60 @@ export const projects: Project[] = [
   },
 ];
 
+/* ── Videography (project 05) ──────────────────────────────── */
+/*  Each video: set `embed` to a YouTube/Vimeo link, OR drop a file in
+    src/assets/videos/ and set `src` to its name. Posters (stills shown
+    before playing) go in src/assets/images/ like every other image.      */
+
+export const videography: Videography = {
+  id: 'videography',
+  number: '05',
+  title: 'Videography',
+  shortTitle: 'Videography',
+  subtitle: 'FPV · Commercial · Short film',
+  tagline: 'Three films: FPV drone footage of sports events, a site walkthrough for an industrial brand and a short film.',
+  images: {
+    card: { src: 'project-05-card.jpg', alt: 'Still from the videography reel' },
+  },
+  videos: [
+    {
+      id: 'fpv-reel',
+      title: 'FPV sports reel',
+      kind: 'FPV drone · Sports events',
+      description: 'A vertical reel of FPV drone footage from sports events: fast, close and in the action.',
+      aspect: 'vertical',
+      src: 'project-05-reel.mp4',
+      poster: { src: 'project-05-reel-poster.jpg', alt: 'Still from the FPV sports reel' },
+    },
+    {
+      id: 'kaeser',
+      title: 'Kaeser Compresores México',
+      kind: 'Commercial · Site walkthrough',
+      description: 'A walkthrough of the company’s site, filmed for Kaeser Compresores México.',
+      aspect: 'wide',
+      embed: 'https://youtu.be/_AznTax9anI',
+      src: 'project-05-kaeser.mp4',
+      poster: { src: 'project-05-kaeser-poster.jpg', alt: 'Still from the Kaeser site walkthrough' },
+    },
+    {
+      id: 'boceto',
+      title: 'Boceto',
+      kind: 'Short film · University',
+      description: 'A short film about a ballerina, shot for a university class.',
+      aspect: 'wide',
+      embed: 'https://youtu.be/fJl2St1BTkA',
+      src: 'project-05-boceto.mp4',
+      poster: { src: 'project-05-boceto-poster.jpg', alt: 'Still from Boceto, a short film about a ballerina' },
+    },
+  ],
+};
+
+/** The videography slides, for the sidebar. */
+export const VIDEOGRAPHY_SLIDES = [
+  { id: 'videography-reel', label: 'FPV reel' },
+  { id: 'videography-films', label: 'Kaeser · Boceto' },
+] as const;
+
 /* ── Navigation (derived — do not edit by hand) ────────────── */
 
 export const SECTION_IDS = {
@@ -646,6 +735,11 @@ export const navSections: NavItem[] = [
       label: sub.label,
     })),
   })),
+  {
+    id: videography.id,
+    label: `${videography.number}  ${videography.shortTitle}`,
+    children: VIDEOGRAPHY_SLIDES.map((slide) => ({ id: slide.id, label: slide.label })),
+  },
   { id: SECTION_IDS.contact, label: 'Contact' },
 ];
 

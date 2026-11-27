@@ -56,6 +56,21 @@
   }
 }
 
+/* A project on the dark palette (project.theme = 'dark'). Every colour class
+   reads these variables, so text, labels and hairlines all follow. */
+.theme-dark {
+  --color-canvas: 19 16 14; /* #13100E */
+  --color-ink: 243 237 228; /* #F3EDE4 */
+  --color-espresso: 214 204 192; /* #D6CCC0 */
+  --color-taupe: 181 170 156; /* #B5AA9C */
+  --color-sand: 58 50 43; /* #3A322B */
+  --color-beige: 37 31 27; /* #251F1B */
+}
+/* Photos sit as shot on dark (multiply would crush them). */
+.theme-dark .mix-blend-multiply {
+  mix-blend-mode: normal;
+}
+
 @layer components {
   /* One screen of the "presentation". Arrow keys jump from slide to slide. */
   .slide {
@@ -66,9 +81,6 @@
   /* Endless photo strip (ImageMarquee). The track holds two identical laps. */
   .marquee-track {
     animation: marquee var(--marquee-duration, 60s) linear infinite;
-  }
-  .marquee:hover .marquee-track {
-    animation-play-state: paused;
   }
   @media (prefers-reduced-motion: reduce) {
     .marquee {
